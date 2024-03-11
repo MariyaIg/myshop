@@ -1,9 +1,9 @@
 package com.ignateva.myshop.servlet;
 
 
-import com.ignateva.myshop.ProductService;
+import com.ignateva.myshop.service.OrderService;
+import com.ignateva.myshop.service.ProductService;
 import com.ignateva.myshop.entity.Order;
-import com.ignateva.myshop.entity.Product;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 @WebServlet(name = "FindOrder_servlet", value = "/findOrder-servlet")
 
-public class FindOrder_servlet extends HttpServlet {
+public class FindOrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/FindOrder.jsp").forward(req, resp);
@@ -26,11 +26,11 @@ public class FindOrder_servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int a = Integer.parseInt(req.getParameter("number1"));
-        ProductService productService=new ProductService();
+        OrderService orderService=new OrderService();
         ArrayList<Order> orders;
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
-        orders= productService.getOrder(a);
+        orders= orderService.getOrder(a);
         out.println("<h1> информация о заказе "+ a+"<h1><br>");
         out.println("<h1> <tr> <th >Дата  </th><th >Наименование  </th> <th >Описание  </th><th >Количество  </th> <th >  Цена</th> </tr><h1><br>");
         for(Order order: orders)
