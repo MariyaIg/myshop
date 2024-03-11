@@ -1,9 +1,9 @@
 package com.ignateva.myshop.servlet;
 
-import com.ignateva.myshop.ProductService;
-import com.ignateva.myshop.dao.ProductDao;
+import com.ignateva.myshop.service.ProductService;
+
 import com.ignateva.myshop.entity.Product;
-import com.ignateva.myshop.exception.DaoException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,10 +13,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 
-@WebServlet(name = "SelectAll_servlet", value ="/selectAll-servlet")
-public class SelectAll_servlet extends HttpServlet {
+@WebServlet(name = "SelectAllServlet", value ="/selectAll-servlet")
+public class SelectAllServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       //  req.getRequestDispatcher("/SelectAll.jsp").forward(req, resp);
         resp.setContentType("text/html");
